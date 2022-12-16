@@ -1,0 +1,55 @@
+WindowManager:
+    MarkScreen
+
+<MarkScreen>:
+    MDScreen:
+        BoxLayout:
+            id: client_layout
+            orientation: "vertical"
+            pos_hint: {"center_y": 0.5}
+            spacing: 20
+
+            MDLabel:
+                id: label
+                text: "Марка"
+                halign: "center"
+
+            MDTextField:
+                id: tf_model
+                mode: "round"
+                text: root.get_model()
+                hint_text: "Модель"
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_class
+                mode: "round"
+                text: root.get_class()
+                hint_text: "Класс"
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDRoundFlatButton:
+                text: "Очистить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press: root.clear()
+
+            MDRoundFlatButton:
+                text: "Сохранить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press:
+                    app.stop() if root.save() else root.nothing()
+
+            MDRoundFlatButton:
+                text: "Удалить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press:
+                    app.stop() if root.delete() else root.nothing()

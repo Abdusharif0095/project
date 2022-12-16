@@ -1,0 +1,225 @@
+#: import MDCard kivymd.uix.card.MDCard
+#: import NoTransition kivy.uix.screenmanager.NoTransition
+#: import MDDateTable kivymd.uix.datatables.MDDataTable
+#: import Window kivy.core.window.Window
+#: import MDDateTable kivymd.uix.datatables.MDDataTable
+#: import ActionBar kivy.uix.actionbar.ActionBar
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#7393B3"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#7393B3"
+
+WindowManager:
+    HomeWindow:
+        id: home
+    LoginWindow:
+        id: login
+    SalesWindow:
+        id: salesWindow
+    AdminWindow:
+        id: adminWindow
+
+<HomeWindow>:
+    name: "home"
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+
+                MDTopAppBar:
+                    name: "md_top_bar"
+                    title: "Автосалон АБСОЛЮТ"
+                    title_color: "#7393B3"
+                    elevation: 4
+                    pos_hint: {"top": 1}
+                    md_bg_color: "#7393B3"
+                    specific_text_color: "#4a4939"
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+
+            MDNavigationDrawerMenu:
+
+                MDNavigationDrawerHeader:
+                    title: "АБСОЛЮТ"
+                    title_color: "#7393B3"
+                    text: "Авто это наше дело"
+                    text_color: "#C0C0C0"
+                    spacing: "4dp"
+                    source: "logo.png"
+                    padding: "12dp", 0, 0, "56dp"
+
+                DrawerClickableItem:
+                    icon: "login.png"
+                    text: "Войти"
+                    on_press:
+                        root.manager.transition = NoTransition()
+                        app.root.current = "login"
+
+                DrawerClickableItem:
+                    icon: "aboutus.png"
+                    text: "Про нас"
+
+<LoginWindow>:
+    username: username
+    password: password
+    errorLabel: errorLabel
+
+    name: "login"
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        MDLabel:
+            id: welcome_label
+            text: "АВТОСАЛОН\nАБСОЛЮТ"
+            font_size: 20
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        MDLabel:
+            id: errorLabel
+            text: ""
+            font_size: 12
+            text_color: "#FF0000"
+            height: 1
+
+        MDTextField:
+            id: username
+            mode: "round"
+            hint_text: "Логин"
+            icon_right: "account"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            id: password
+            mode: "round"
+            hint_text: "Пароль"
+            icon_right: "eye-off"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+
+        MDRoundFlatButton:
+            text: "Войти"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: app.logger()
+
+        MDRoundFlatButton:
+            text: "Очистить"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: app.clear()
+
+        Widget:
+            size_hint_y: None
+            height: 10
+
+<SalesWindow>:
+    name: "sales"
+    ActionBar:
+        id: action_bar
+        pos_hint: {'top':1}
+        icon: "login.png"
+        ActionView:
+            id: action_view
+            use_separator: True
+            ActionPrevious:
+                title: 'АБСОЛЮТ'
+                with_previous: False
+            ActionOverflow:
+            ActionButton:
+                text: 'Авто на продаже'
+                on_press: root.cars_for_sale()
+            ActionButton:
+                text: 'Каталог Авто'
+                on_press: root.cars_in_catalog()
+            ActionButton:
+                text: 'Клиенты'
+                on_press: root.clients()
+            ActionButton:
+                text: 'Предзаказ'
+                on_press: root.order()
+            ActionButton:
+                text: 'Запись на тест-драйв'
+                on_press: root.test()
+            ActionButton:
+                text: 'Мои продажи'
+                on_press: root.sales(),
+            ActionButton:
+                text: 'Изменить мои данные'
+                on_press: root.my_info()
+            ActionButton:
+                text: '                        '
+            ActionButton:
+                text: 'Выйти'
+                on_press: app.root.current='login'
+
+<AdminWindow>:
+    name: "admin"
+    ActionBar:
+        id: action_bar
+        pos_hint: {'top':1}
+        icon: "login.png"
+        ActionView:
+            id: action_view
+            use_separator: True
+            ActionPrevious:
+                title: 'АБСОЛЮТ'
+                with_previous: False
+            ActionOverflow:
+            ActionButton:
+                text: 'Марка'
+                on_press: root.mark()
+            ActionButton:
+                text: 'Авто на продаже'
+                on_press: root.cars_for_sale()
+            ActionButton:
+                text: 'Каталог Авто'
+                on_press: root.cars_in_catalog()
+            ActionButton:
+                text: 'Клиенты'
+                on_press: root.clients()
+            ActionButton:
+                text: 'Сотрудники'
+                on_press: root.employees()
+            ActionButton:
+                text: 'Предзаказ'
+                on_press: root.order()
+            ActionButton:
+                text: 'Запись на тест-драйв'
+                on_press: root.test()
+            ActionButton:
+                text: 'Поставщики'
+                on_press: root.shipper()
+            ActionButton:
+                text: 'Поставки'
+                on_press: root.supply()
+            ActionButton:
+                text: 'Анализ продаж'
+                on_press: root.sales_analisys()
+            ActionButton:
+                text: 'Мои данные'
+                on_press: root.my_info()
+            ActionButton:
+                text: 'Выйти'
+                on_press: app.root.current='login'

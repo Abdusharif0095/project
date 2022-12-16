@@ -1,0 +1,73 @@
+WindowManager:
+    TestScreen
+
+<TestScreen>:
+    MDScreen:
+        BoxLayout:
+            id: client_layout
+            orientation: "vertical"
+            pos_hint: {"center_y": 0.5}
+            spacing: 20
+
+            MDLabel:
+                id: label
+                text: "Мои продажи"
+                halign: "center"
+
+            MDTextField:
+                id: tf_client_fullname
+                mode: "round"
+                text: root.get_client_fullname()
+                hint_text: "ФИО Клиента"
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_auto_id
+                mode: "round"
+                hint_text: "id Автомобилья"
+                text: str(root.get_auto_id())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+            BoxLayout:
+                size_hint_x: 0.4
+                pos_hint: {"center_x": 0.5}
+                MDTextField:
+                    id: tf_date
+                    mode: "round"
+                    hint_text: "Дата"
+                    text: str(root.get_date())
+                    size_hint_x: None
+                    width: 240
+                    font_size: 18
+                    pos_hint: {"left": 1, "top": 1, "center_x": 0.5}
+                MDIconButton:
+                    icon: "calendar.png"
+                    size_hint_x: 0.7
+                    font_size: 18
+                    pos_hint: {"top": 1, "center_x": 0.5}
+                    on_press: root.show_date_picker()
+
+            MDRoundFlatButton:
+                text: "Очистить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press: root.clear()
+
+            MDRoundFlatButton:
+                text: "Сохранить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press:
+                    app.stop() if root.save() else root.nothing()
+
+            MDRoundFlatButton:
+                text: "Удалить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press:
+                    app.stop() if root.delete() else root.nothing()

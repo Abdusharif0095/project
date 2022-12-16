@@ -1,0 +1,124 @@
+WindowManager:
+    AutoScreen
+
+<AutoScreen>:
+    MDScreen:
+        BoxLayout:
+            id: client_layout
+            orientation: "vertical"
+            pos_hint: {"center_y": 0.5}
+            spacing: 20
+
+            MDLabel:
+                text: "Автомобиль"
+                halign: "center"
+
+            MDTextField:
+                id: tf_mark_id
+                mode: "round"
+                text: str(root.get_mark_id())
+                hint_text: "id Марки"
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_category
+                mode: "round"
+                hint_text: "Категория"
+                text: str(root.get_category())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_year
+                mode: "round"
+                hint_text: "Год Выпуска: гггг"
+                text: str(root.get_year())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_transmission
+                mode: "round"
+                hint_text: "механика или автомат"
+                text: str(root.get_transmission())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_mileage
+                mode: "round"
+                hint_text: "Пробег в км"
+                text: str(root.get_mileage())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_color
+                mode: "round"
+                hint_text: "Цвет"
+                text: str(root.get_color())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_fuel
+                mode: "round"
+                hint_text: "Расход топливо в л"
+                text: str(root.get_fuel())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_price
+                mode: "round"
+                hint_text: "цена в Рублях"
+                text: str(root.get_price())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_count
+                mode: "round"
+                hint_text: "Количество"
+                text: str(root.get_count())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDRoundFlatButton:
+                text: "Очистить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press: root.clear()
+
+            MDRoundFlatButton:
+                text: "Сохранить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press:
+                    app.stop() if root.save() else root.nothing()
+
+            MDRoundFlatButton:
+                text: "Удалить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press:
+                    app.stop() if root.delete() else root.nothing()

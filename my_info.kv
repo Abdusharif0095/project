@@ -1,0 +1,71 @@
+WindowManager:
+    InfoScreen
+
+<InfoScreen>:
+    MDScreen:
+        username: username
+        password: password
+        errorLabel: errorLabel
+
+        name: "login"
+        MDCard:
+            size_hint: None, None
+            size: 500, 500
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'vertical'
+
+            MDLabel:
+                id: welcome_label
+                text: str(root.get_username())
+                font_size: 20
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+
+            MDLabel:
+                id: errorLabel
+                text: ""
+                font_size: 12
+                text_color: "#FF0000"
+                height: 1
+
+            MDTextField:
+                id: username
+                mode: "round"
+                hint_text: "Логин"
+                icon_right: "account"
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: password
+                mode: "round"
+                hint_text: "Пароль"
+                icon_right: "eye-off"
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+                password: False
+
+            MDRoundFlatButton:
+                text: "Сохранить"
+                font_size: 12
+                pos_hint: {"center_x": 0.5}
+                on_press: app.stop() if root.save() else root.nothing()
+
+            MDRoundFlatButton:
+                text: "Очистить"
+                font_size: 12
+                pos_hint: {"center_x": 0.5}
+                on_press: root.clear()
+
+            Widget:
+                size_hint_y: None
+                height: 10

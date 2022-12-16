@@ -1,0 +1,137 @@
+WindowManager:
+    AnalisysScreen
+
+<AnalisysScreen>:
+    MDScreen:
+        BoxLayout:
+            id: client_layout
+            orientation: "horizontal"
+            pos_hint: {"center_y": 0.5}
+            spacing: 20
+
+            BoxLayout:
+                orientation: "vertical"
+
+                MDLabel:
+                    text: "Данные сотрудников"
+                    font_size: 20
+                    halign: "center"
+                    size_hint_y: None
+                    pos_hint: {"top": 1}
+                    padding_y: 15
+
+                BoxLayout:
+                    orientation: "vertical"
+
+                    BoxLayout:
+                        orientation: "horizontal"
+
+                        MDLabel:
+                            text: "Сотрудник:"
+                            font_size: 20
+                            halign: "center"
+                            size_hint_y: None
+                            pos_hint: {"top": 1}
+                            padding_y: 15
+
+                        Spinner:
+                            id: emp_spinner
+                            size_hint: (0.7, 0.2)
+                            pos_hint: {"top": 0.92, "center_x": 0.5}
+                            text: "-------"
+                            values: root.get_emps()
+                            on_text: root.emp_press_spinner(emp_spinner)
+
+                    BoxLayout:
+                        orientation: "horizontal"
+
+                        MDLabel:
+                            text: "Время: за "
+                            font_size: 20
+                            halign: "center"
+                            size_hint_y: None
+                            pos_hint: {"top": 1}
+                            padding_y: 15
+
+                        Spinner:
+                            id: emp_time_spinner
+                            size_hint: (0.7, 0.2)
+                            pos_hint: {"top": 0.92, "left": 1}
+                            text: "-------"
+                            values: ['неделью', 'месяц', 'год', 'за всё время']
+                            on_text: root.emp_time_press_spinner(emp_time_spinner)
+
+                    MDRaisedButton:
+                        text: "Данные"
+                        pos_hint: {"center_x": 0.5, "top": 1}
+                        size_hint_x: 0.5
+                        pos_hint_y: 0.1
+                        on_press: root.emp_button()
+
+                    BoxLayout:
+                        size_hint_y: 0.5
+
+            BoxLayout:
+                orientation: "vertical"
+
+                MDLabel:
+                    text: "Данные Авто"
+                    font_size: 20
+                    halign: "center"
+                    size_hint_y: None
+                    pos_hint: {"top": 1}
+                    padding_y: 15
+
+                BoxLayout:
+                    orientation: "vertical"
+
+                    BoxLayout:
+                        orientation: "horizontal"
+
+                        MDLabel:
+                            text: "idАвтомобиля:"
+                            font_size: 20
+                            halign: "center"
+                            size_hint_y: None
+                            pos_hint: {"top": 1}
+                            padding_y: 15
+
+                        Spinner:
+                            id: auto_id_spinner
+                            size_hint: (0.7, 0.2)
+                            pos_hint: {"top": 0.92, "left": 1}
+                            text: "-------"
+                            values: root.get_auto_ids()
+                            on_text: root.auto_id_press_spinner(auto_id_spinner)
+
+                    BoxLayout:
+                        orientation: "horizontal"
+
+                        MDLabel:
+                            text: "Время: за "
+                            font_size: 20
+                            halign: "center"
+                            size_hint_y: None
+                            pos_hint: {"top": 1}
+                            padding_y: 15
+
+                        Spinner:
+                            id: auto_time_spinner
+                            size_hint: (0.7, 0.2)
+                            pos_hint: {"top": 0.92, "left": 1}
+                            text: "-------"
+                            values: ['неделью', 'месяц', 'год', 'за всё время']
+                            on_text: root.auto_time_press_spinner(auto_time_spinner)
+
+                    MDRaisedButton:
+                        text: "Данные"
+                        pos_hint: {"center_x": 0.5, "top": 1}
+                        size_hint_x: 0.5
+                        pos_hint_y: 0.1
+
+                    BoxLayout:
+                        size_hint_y: 0.5
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_x: 0.3

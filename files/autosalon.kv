@@ -1,0 +1,46 @@
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+MDScreen:
+
+        MDNavigationLayout:
+
+            MDScreenManager:
+
+                MDScreen:
+
+                    MDTopAppBar:
+                        title: "Автосалон Абсолют"
+                        elevation: 4
+                        pos_hint: {"top": 1}
+                        md_bg_color: "#7393B3"
+                        specific_text_color: "#4a4939"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+            MDNavigationDrawer:
+                id: nav_drawer
+                radius: (0, 16, 16, 0)
+
+                MDNavigationDrawerMenu:
+
+                    MDNavigationDrawerHeader:
+                        title: "АБСОЛЮТ"
+                        source: "logo.png"
+                        title_color: "#7393B3"
+                        text: "Авто это наше дело"
+                        spacing: "4dp"
+                        padding: "12dp", 0, 0, "56dp"
+
+                    DrawerClickableItem:
+                        icon: "login.png"
+                        text: "Войти"
+                        text_color: "#7393B3"
+
+                    DrawerClickableItem:
+                        icon: "aboutus.png"
+                        text: "Про Нас"
+                        text_color: "#7393B3"

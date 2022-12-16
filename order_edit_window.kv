@@ -1,0 +1,65 @@
+WindowManager:
+    OrderScreen
+
+<OrderScreen>:
+    MDScreen:
+        BoxLayout:
+            id: client_layout
+            orientation: "vertical"
+            pos_hint: {"center_y": 0.5}
+            spacing: 20
+
+            MDLabel:
+                id: label
+                text: "Предзаказ"
+                halign: "center"
+
+            MDTextField:
+                id: tf_client_fullname
+                mode: "round"
+                text: str(root.get_client_fullname())
+                hint_text: "ФИО Клиента"
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_auto_id
+                mode: "round"
+                hint_text: "id Автомобилья"
+                text: str(root.get_auto_id())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_prepeymant
+                mode: "round"
+                hint_text: "Предоплата"
+                text: str(root.get_prepeymant())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDRoundFlatButton:
+                text: "Очистить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press: root.clear()
+
+            MDRoundFlatButton:
+                text: "Сохранить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press:
+                    app.stop() if root.save() else root.nothing()
+
+            MDRoundFlatButton:
+                text: "Удалить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press:
+                    app.stop() if root.delete() else root.nothing()

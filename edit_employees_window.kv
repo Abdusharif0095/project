@@ -1,0 +1,85 @@
+WindowManager:
+    EmployeeScreen
+
+<EmployeeScreen>:
+    MDScreen:
+        BoxLayout:
+            id: employee_layout
+            orientation: "vertical"
+            pos_hint: {"center_y": 0.5}
+            spacing: 20
+
+            MDLabel:
+                id: label
+                text: "Сотрудник"
+                halign: "center"
+
+            MDTextField:
+                id: tf_fullname
+                mode: "round"
+                text: str(root.get_fullname())
+                hint_text: "ФИО"
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_phone_num
+                mode: "round"
+                hint_text: "+7(777)777-77-77"
+                text: str(root.get_phone_num())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_position
+                mode: "round"
+                hint_text: "Должность"
+                text: str(root.get_position())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_birth_day
+                mode: "round"
+                hint_text: "Дата рождения: гггг-мм-дд"
+                text: str(root.get_birth_day())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                id: tf_gender
+                mode: "round"
+                hint_text: "м или ж"
+                text: str(root.get_gender())
+                size_hint_x: None
+                width: 300
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDRoundFlatButton:
+                text: "Очистить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press: root.clear()
+
+            MDRoundFlatButton:
+                text: "Сохранить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press:
+                    app.stop() if root.save() else root.nothing()
+
+            MDRoundFlatButton:
+                text: "Удалить"
+                font_size: 14
+                pos_hint: {"center_x": 0.5}
+                on_press:
+                    app.stop() if root.delete() else root.nothing()
